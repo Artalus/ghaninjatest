@@ -9,12 +9,16 @@ jobs:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v4
+      # populate PATH with Ninja, together with CL.exe for it
+      - uses: ilammy/msvc-dev-cmd@v1
       - run: cmake -G Ninja -B b
       - run: cmake --build b
 
   linux:
-    runs-on: linux-latest
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      # - name: get-cmake
+      #   uses: lukka/get-cmake@v3.30.3
       - run: cmake -G Ninja -B b
       - run: cmake --build b
